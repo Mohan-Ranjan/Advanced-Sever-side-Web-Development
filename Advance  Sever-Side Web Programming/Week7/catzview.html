@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> ILikeCatz </title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <style>
+        <body>
+        .catz {
+            width: 100%;
+            height: 100%;
+            background-image: url("https://www.catster.com/wp-content/uploads/2018/05/A-gray-cat-crying-looking-upset.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        </body>
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>ILikeCatz</h2>
+                <p>
+                    Click the button to see a cat
+                </p>
+                <button id="catButton" class="btn btn-primary">Show me a cat</button>
+                <div id="catDiv" class="catz"></div>
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.7.1.js" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready (function () {
+            $('#catButton').click(function () {
+                $('#catDiv').html('<img src="https://www.catster.com/wp-content/uploads/2018/05/A-gray-cat-crying-looking-upset.jpg" alt="cat" style="width: 100%; height: 100%;">');
+            });
+        });
+    </script>
+</body>
+</html>
+

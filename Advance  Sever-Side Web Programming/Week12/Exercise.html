@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backbone Exercises</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone-min.js"></script>
+</head>
+<body>
+    <!-- Exercise 0 -->
+    <div id="exercise0">
+        <input type="text" id="inputField0">
+        <button id="alertButton0">Alert</button>
+        <button id="clearButton0">Clear Text</button>
+        <p id="textParagraph0">Hover over me</p>
+        <div id="emptyDiv0"></div>
+    </div>
+
+    <!-- Exercise 1 -->
+    <div id="exercise1">
+        <form id="myForm1">
+            <input type="text" id="inputField1">
+            <input type="submit" id="submitButton1" value="Submit">
+        </form>
+        <div id="resultDiv1"></div>
+    </div>
+
+    <!-- Exercise 2 -->
+    <div id="exercise2">
+        <input type="text" id="bookIdInput">
+        <button id="fetchButton">Fetch Book Details</button>
+        <div id="bookDetails"></div>
+    </div>
+
+    <script>
+        // Exercise 0
+        var Exercise0View = Backbone.View.extend({
+            el: '#exercise0',
+            events: {
+                'click #alertButton0': 'dopopup',
+                'mouseenter #textParagraph0': 'inserttext',
+                'click #clearButton0': 'cleartext'
+            },
+            dopopup: function () {
+                alert('Alert message');
+            },
+            inserttext: function () {
+                $('#emptyDiv0').text('Inserted Text');
+            },
+            cleartext: function () {
+                $('#emptyDiv0').text('');
+            }
+        });
+        var exercise0View = new Exercise0View();
+
+        // Exercise 1
+        var Exercise1View = Backbone.View.extend({
+            el: '#exercise1',
+            events: {
+                'submit #myForm1': 'handleSubmit'
+            },
+            handleSubmit: function (event) {
+                event.preventDefault();
+                var inputValue = $('#inputField1').val();
+                $('#resultDiv1').text(inputValue);
+            }
+        });
+        var exercise1View = new Exercise1View();
+
+        // Exercise 2
+        var BookModel = Backbone.Model.extend({
+            urlRoot: '/books/index/' // Replace with the appropriate URL
+        });
+        $('#fetchButton').click(function () {
+            var bookId = $('#bookIdInput').val();
+            var book = new BookModel({ id: bookId });
+            book.fetch({
+                success: function (model, response) {
+                    $('#bookDetails').html(JSON.stringify(response));
+                },
+                error: function (model, response) {
+                    $('#bookDetails').html("Error: " + response.status);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

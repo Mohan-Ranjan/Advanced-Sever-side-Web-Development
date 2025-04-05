@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 1 - Using a View</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone-min.js"></script>
+</head>
+<body>
+    <div id="container">
+        <form id="myForm">
+            <input type="text" id="inputField">
+            <input type="submit" id="submitButton" value="Submit">
+        </form>
+        <div id="resultDiv"></div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            var MyView = Backbone.View.extend({
+                el: '#container',
+                events: {
+                    'submit #myForm': 'handleSubmit'
+                },
+                handleSubmit: function (event) {
+                    event.preventDefault();
+                    var inputValue = $('#inputField').val();
+                    $('#resultDiv').text(inputValue);
+                }
+            });
+
+            var myView = new MyView();
+        });
+    </script>
+</body>
+</html>

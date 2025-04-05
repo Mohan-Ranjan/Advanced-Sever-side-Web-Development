@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+
+
+<html lang="en">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Search</title>
+
+
+    <h1>Movie Search</h1>
+    <form id="searchForm">
+        <input type="text" id="searchInput" placeholder="Search for a movie...">
+        <button type="submit">Search</button>
+    </form>
+    <div id="results"></div>
+
+    <script>
+        document.getElementById('searchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            var searchQuery = document.getElementById('searchInput').value;
+            fetch('http://www.omdbapi.com/?s=' + searchQuery + '&apikey=YOUR_API_KEY')
+                .then(response => response.json())
+                .then(data => {
+                    var resultsContainer = document.getElementById('results');
+                    resultsContainer.innerHTML = '';
+                    data.Search.forEach(movie => {
+                        var movieElement = document.createElement('div');
+                        movieElement.innerHTML = `
+                            <h2>${movie.Title}</h2>
+                            <img src="${movie.Poster}" alt="${movie.Title}">
+                        `;
+                        resultsContainer.appendChild(movieElement);
+                    });
+                });
+        });
+    </script>
+
+    document.getElementById('searchForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var searchQuery = document.getElementById('searchInput').value;
+    fetch('http://www.omdbapi.com/?s=' + searchQuery + '&apikey=YOUR_API_KEY')
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            var resultsContainer = document.getElementById('results');
+            resultsContainer.innerHTML = '';
+            data.Search.forEach(movie => {
+                var movieElement = document.createElement('div');
+                movieElement.innerHTML = `
+                    <h2>${movie.Title}</h2>
+                    <img src="${movie.Poster}" alt="${movie.Title}">
+                `;
+                resultsContainer.appendChild(movieElement);
+            });
+        })
+        .catch(error => {
+            console.error('There has been a problem with your fetch operation:', error);
+        });
+});
+
+    {
+        "Search":[
+           {
+              "Title":"Inception",
+              "Poster":"http://www.example.com/inception.jpg"
+           },
+           {
+              "Title":"The Dark Knight",
+              "Poster":"http://www.example.com/darkknight.jpg"
+           },
+           {
+              "Title":"Interstellar",
+              "Poster":"http://www.example.com/interstellar.jpg"
+           }
+        ]
+     }
+     
+<div>
+    <h1> Movies </h1>    
+    <script language="javscribt">
+        $(document).ready(function(){
+            e.preventDefault();
+        $.ajax({
+
+        })     });
+    </script>
+</div>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Search</title>
+
+    <h1>Movie Search</h1>
+    <form id="searchForm">
+        <label for="movieQuery">Enter a movie title:</label>
+        <input type="text" id="movieQuery" name="movieQuery" required>
+        <button type="submit">Search</button>
+    </form>
+    <div id="results"></div>
+
+    <script>
+        document.getElementById("searchForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const query = document.getElementById("movieQuery").value;
+            fetchMovies(query);
+        });
+
+        function fetchMovies(query) {
+            const apiKey = 'yourapikey'; // Replace with your actual API key
+            const url = `http://www.omdbapi.com/?apikey=${apiKey}&s=${query}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    displayMovies(data.Search);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function displayMovies(movies) {
+            const resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = ""; // Clear previous results
+
+            movies.forEach(movie => {
+                const movieDiv = document.createElement("div");
+                const title = document.createElement("h2");
+                title.textContent = movie.Title;
+
+                const poster = document.createElement("img");
+                poster.src = movie.Poster;
+                poster.alt = movie.Title;
+
+                movieDiv.appendChild(title);
+                movieDiv.appendChild(poster);
+                resultsDiv.appendChild(movieDiv);
+            });
+        }
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'http://www.omdbapi.com/?s=your_query&apikey=YOUR_API_KEY', true);
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == 4) { // The request is complete
+                if (xhr.status == 200) { // The request was successful
+                    var data = JSON.parse(xhr.responseText);
+                    // Process the data here
+                } else { // There was an error
+                    console.error('There was an error with the request:', xhr.status, xhr.statusText);
+                }
+            }
+        };
+
+        xhr.onerror = function () {
+            console.error('There was an error with the request.');
+        };
+
+        xhr.send();
+    </script>
+    </body>
+</html>

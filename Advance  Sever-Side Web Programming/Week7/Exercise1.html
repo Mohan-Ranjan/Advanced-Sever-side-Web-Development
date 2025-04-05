@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 1</title>
+</head>
+<body>
+    <h2>Welcome Message</h2>
+    <button id="button1">Click me!</button>
+    <button class="commonButton">Button 2</button>
+    <button class="commonButton">Button 3</button>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.js" crossorigin="anonymous"></script>
+    <script>
+        $(document).ready(function (){
+            // jquery callback function for click events on the button
+            $('#button1').click(function () {
+                // open alert box to display another welcome message
+                alert("Welcome to jQuery!");
+            });
+
+            $('.commonButton').mouseover(function () {
+                alert("You hovered over a button!");
+            });
+        });
+    </script>
+</body>
+</html>

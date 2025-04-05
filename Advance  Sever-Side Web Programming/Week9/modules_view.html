@@ -1,0 +1,24 @@
+<!-- application/views/modules_view.php -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Modules</title>
+</head>
+<body>
+    <h1>Modules</h1>
+    <ul id="moduleList"></ul>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.get('/index.php/universityapi/modules', function(modules) {
+                modules.forEach(function(module) {
+                    $('#moduleList').append('<li><a href="/index.php/university/module_students/' + module.id + '">' + module.name + '</a></li>');
+                });
+            });
+        });
+    </script>
+</body>
+</html>

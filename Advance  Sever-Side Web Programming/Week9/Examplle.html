@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Search</title>
+</head>
+<body>
+    <h1>Movie Search</h1>
+    <form id="searchForm">
+        <label for="movieQuery">Enter a movie title:</label>
+        <input type="text" id="movieQuery" name="movieQuery" required>
+        <button type="submit">Search</button>
+    </form>
+    <div id="results"></div>
+
+    <script>
+        document.getElementById("searchForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            const query = document.getElementById("movieQuery").value;
+            fetchMovies(query);
+        });
+
+        function fetchMovies(query) {
+            const apiKey = 'yourapikey'; // Replace with your actual API key
+            const url = `http://www.omdbapi.com/?apikey=${apiKey}&s=${query}`;
+
+            fetch(url)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    displayMovies(data.Search);
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function displayMovies(movies) {
+            const resultsDiv = document.getElementById("results");
+            resultsDiv.innerHTML = ""; // Clear previous results
+
+            movies.forEach(movie => {
+                const movieDiv = document.createElement("div");
+                const title = document.createElement("h2");
+                title.textContent = movie.Title;
+
+                const poster = document.createElement("img");
+                poster.src = movie.Poster;
+                poster.alt = movie.Title;
+
+                movieDiv.appendChild(title);
+                movieDiv.appendChild(poster);
+                resultsDiv.appendChild(movieDiv);
+            });
+        }
+    </script>
+</body>
+</html>

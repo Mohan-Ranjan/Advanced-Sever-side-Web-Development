@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQuery Example</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function() {
+      // Wait for the document to be fully loaded
+      $("#changeTextBtn").click(function() {
+        // Attach a click event handler to the button
+        $("#myParagraph").text("Text changed by jQuery!");
+        // Change the text of the paragraph with id "myParagraph"
+      });
+    });
+  </script>
+</head>
+<body>
+  <p id="myParagraph">This is a paragraph.</p>
+  <button id="changeTextBtn">Change Text</button>
+</body>
+</html>

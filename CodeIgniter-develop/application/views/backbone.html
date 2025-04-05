@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookmark Application</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://underscorejs.org/underscore-min.js"></script>
+    <script src="https://backbonejs.org/backbone-min.js"></script>
+    <script src="/assets/js/main.js"></script>
+</head>
+<body>
+    <div id="bookmark-app">
+        <h1>Bookmark Application</h1>
+        <form id="new-bookmark">
+            <input type="text" id="title" placeholder="Title" required>
+            <input type="url" id="url" placeholder="URL" required>
+            <input type="text" id="tags" placeholder="Tags (comma-separated)" required>
+            <button type="submit">Add Bookmark</button>
+        </form>
+        <ul id="bookmark-list"></ul>
+    </div>
+
+    <script type="text/template" id="bookmark-template">
+        <span><%= title %> (<a href="<%= url %>"><%= url %></a>) - Tags: <%= tags %></span>
+        <button class="edit">Edit</button>
+        <button class="delete">Delete</button>
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise 0 - Views</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.3/backbone-min.js"></script>
+    <style>
+        #container {
+            margin: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <input type="text" id="inputField">
+        <button id="alertButton">Alert</button>
+        <button id="clearButton">Clear Text</button>
+        <p id="textParagraph">Hover over me</p>
+        <div id="emptyDiv"></div>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            var MyView = Backbone.View.extend({
+                el: '#container',
+                events: {
+                    'click #alertButton': 'dopopup',
+                    'mouseenter #textParagraph': 'inserttext',
+                    'click #clearButton': 'cleartext'
+                },
+                dopopup: function () {
+                    alert('Alert message');
+                },
+                inserttext: function () {
+                    $('#emptyDiv').text('Text inserted');
+                },
+                cleartext: function () {
+                    $('#emptyDiv').text('');
+                }
+            });
+
+            var myView = new MyView();
+        });
+    </script>
+</body>
+</html>
